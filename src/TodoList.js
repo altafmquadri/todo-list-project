@@ -8,39 +8,50 @@ class TodoList extends Component {
     state = {
         toDos: [],
         todo: '',
-        editing: false
+        editTodo: ''
     }
 
     submitEdit = (e) => {
         e.preventDefault()
         this.setState(
             {
-                toDos: this.state.toDos.map(stT => {
-                    if (this.state.todo.id === stT.id) {
-                        return this.state.todo
-                    } else {
-                        return stT
-                    }
-                }),
-                todo: '',
-                editing: false
-            })
+                editTodo: { ...this.state.editTodo, editing: false }
+            }, () => this.setState(
+                {
+                    toDos: this.state.toDos.map(stT => {
+                        if (this.state.editTodo.id === stT.id) {
+                            return this.state.editTodo
+                        } else {
+                            return stT
+                        }
+                    }),
+                    editTodo: ''
+                }))
     }
 
     editChange = e => {
         this.setState(
             {
-                todo: { ...this.state.todo, task: e.target.value }
+                editTodo: { ...this.state.editTodo, task: e.target.value }
             });
     }
 
     edit = (t) => {
         this.setState(
             {
-                editing: !this.state.editing,
-                todo: this.state.toDos.find(stT => t.id === stT.id),
-
-            }, () => this.setState({ id: this.state.todo.id }))
+                editTodo: this.state.toDos.find(stT => t.id === stT.id),
+            }, () => this.setState(
+                {
+                    editTodo: { ...this.state.editTodo, editing: true }
+                }, () => this.setState({
+                    toDos: this.state.toDos.map(stT => {
+                        if (stT.id === t.id) {
+                            return this.state.editTodo
+                        } else {
+                            return stT
+                        }
+                    })
+                })))
     }
 
     deleteTodo = id => {
@@ -70,7 +81,8 @@ class TodoList extends Component {
         let newTodo = {
             id: uuid(),
             completed: false,
-            task: this.state.todo
+            task: this.state.todo,
+            editing: false
         }
         this.setState({
             toDos: [...this.state.toDos, newTodo],
@@ -94,9 +106,7 @@ class TodoList extends Component {
                         <Todo
                             toDos={this.state.toDos}
                             edit={this.edit}
-                            id={this.state.id}
-                            todo={this.state.todo}
-                            editing={this.state.editing}
+                            editTodo={this.state.editTodo}
                             editChange={this.editChange}
                             markComplete={this.markComplete}
                             submitEdit={this.submitEdit}
