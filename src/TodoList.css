@@ -1,0 +1,12 @@
+.TodoList-container {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+}
+
+.Todo-wrapper {
+  border: 1px solid black;
+  width: 500px;
+  align-self: center;
+  padding: 15px;
+}
