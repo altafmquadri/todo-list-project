@@ -3,12 +3,18 @@ import NewTodoForm from './NewTodoForm'
 import Todo from './Todo'
 import uuid from 'uuid/v4'
 import './TodoList.css'
+import Speech from './Speech'
 
 class TodoList extends Component {
     state = {
         toDos: [],
         todo: '',
-        editTodo: ''
+        editTodo: '',
+        recording: false
+    }
+
+    record = () => {
+        this.setState({ recording: !this.state.recording })
     }
 
     submitEdit = (e) => {
@@ -115,6 +121,9 @@ class TodoList extends Component {
                             todo={this.state.todo}
                             handleSubmit={this.handleSubmit}
                             handleChange={this.handleChange} />
+                        <Speech
+                            recording={this.state.recording}
+                            record={this.record} />
                     </div>
                 </div>
             </div>
