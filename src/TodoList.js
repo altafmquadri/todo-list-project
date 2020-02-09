@@ -13,6 +13,10 @@ class TodoList extends Component {
         recording: false
     }
 
+    recordTodo = (v) => {
+        this.setState({ todo: v })
+    }
+
     record = () => {
         this.setState({ recording: !this.state.recording })
     }
@@ -123,7 +127,8 @@ class TodoList extends Component {
                             handleChange={this.handleChange} />
                         <Speech
                             recording={this.state.recording}
-                            record={this.record} />
+                            record={this.record}
+                            recordTodo={this.recordTodo} />
                     </div>
                 </div>
             </div>

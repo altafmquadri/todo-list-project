@@ -11,6 +11,7 @@ const Speech = (props) => {
         recognition.onresult = e => {
             let verbal = e.results[0][0].transcript
             console.log(verbal)
+            props.recordTodo(verbal)
         }
     } else {
         console.log('i am stopping')
