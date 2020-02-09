@@ -7,7 +7,40 @@ import './TodoList.css'
 class TodoList extends Component {
     state = {
         toDos: [],
-        todo: ''
+        todo: '',
+        editing: false
+    }
+
+    submitEdit = (e) => {
+        e.preventDefault()
+        this.setState(
+            {
+                toDos: this.state.toDos.map(stT => {
+                    if (this.state.todo.id === stT.id) {
+                        return this.state.todo
+                    } else {
+                        return stT
+                    }
+                }),
+                todo: '',
+                editing: false
+            })
+    }
+
+    editChange = e => {
+        this.setState(
+            {
+                todo: { ...this.state.todo, task: e.target.value }
+            });
+    }
+
+    edit = (t) => {
+        this.setState(
+            {
+                editing: !this.state.editing,
+                todo: this.state.toDos.find(stT => t.id === stT.id),
+
+            }, () => this.setState({ id: this.state.todo.id }))
     }
 
     deleteTodo = id => {
@@ -18,7 +51,6 @@ class TodoList extends Component {
     }
 
     markComplete = (t) => {
-        console.log(t)
         t.completed = !t.completed
         this.setState(
             {
@@ -30,7 +62,6 @@ class TodoList extends Component {
                     }
                 })
             })
-        console.log(this.state.toDos)
     }
 
     handleSubmit = (e) => {
@@ -62,7 +93,13 @@ class TodoList extends Component {
                     <div className="Todo-wrapper">
                         <Todo
                             toDos={this.state.toDos}
+                            edit={this.edit}
+                            id={this.state.id}
+                            todo={this.state.todo}
+                            editing={this.state.editing}
+                            editChange={this.editChange}
                             markComplete={this.markComplete}
+                            submitEdit={this.submitEdit}
                             deleteTodo={this.deleteTodo} />
                         <NewTodoForm
                             todo={this.state.todo}
