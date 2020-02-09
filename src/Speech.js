@@ -21,7 +21,8 @@ const Speech = (props) => {
     console.log(props)
     return (
         <div>
-            <button onClick={props.record}>Mic</button>
+            <button onClick={props.record}>
+                <span role='img' aria-label='mic'>🎤</span></button>
         </div>
     )
 
