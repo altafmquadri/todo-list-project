@@ -25,8 +25,6 @@ const Speech = (props) => {
                 <span role='img' aria-label='mic'>🎤</span></button>
         </div>
     )
-
-
 }
 
 export default Speech

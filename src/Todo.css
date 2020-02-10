@@ -9,11 +9,11 @@
 .Todo-task h2 {
   text-align: left;
   flex: 1;
+  color: #a69f98;
 }
 
 .Todo-button {
   border: 1px solid green;
-  /* align-content: flex-start; */
   margin-top: auto;
   margin-bottom: auto;
 }

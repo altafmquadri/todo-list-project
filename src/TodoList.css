@@ -1,12 +1,16 @@
 .TodoList-container {
   display: flex;
   flex-direction: column;
-  border: 1px solid black;
 }
 
 .Todo-wrapper {
-  border: 1px solid black;
-  width: 500px;
+  width: 450px;
+  /* background-color: #9f8e80; */
+  /* background-color: #e0e0e2; */
+  background-color: #c8e0f4;
+
   align-self: center;
   padding: 15px;
+  border-radius: 20px;
+  box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2), 0 8px 5px 0 rgba(0, 0, 0, 0.24);
 }

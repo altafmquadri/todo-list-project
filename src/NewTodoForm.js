@@ -6,8 +6,8 @@ const NewTodoForm = (props) => {
         <div className="NewTodoForm-container">
             <div className="NewTodoForm">
                 <form onSubmit={props.handleSubmit}>
+                    <h2>New Todo</h2>
                     <div className="NewTodoForm-task">
-                        <h2>New Todo</h2>
                         <input
                             type="text"
                             name="todo"
